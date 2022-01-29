@@ -2,9 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import Registration from './components/Registration.vue'
-import Login from './components/Login.vue'
+// import Login from './components/Login.vue'
 import NewArticle from './components/NewArticle.vue'
-import AllPosts from './components/Article.vue'
+import AllPosts from './components/AllPosts.vue'
+import Home from './components/Home.vue'
+import ErrorPage from './components/ErrorPage.vue'
+
 
 Vue.config.productionTip = false;
 
@@ -16,13 +19,13 @@ const routes = [
     component: Registration,
     name: "Registration"
   },
+  // {
+  //   path: '/login',
+  //   component: Login,
+  //   name: "Login"
+  // },
   {
-    path: '/login',
-    component: Login,
-    name: "Login"
-  },
-  {
-    path: '/article',
+    path: '/allposts',
     component: AllPosts,
     name: "AllPosts"
   },
@@ -33,13 +36,20 @@ const routes = [
   },
   {
     path: '/',
-  component: App,
+  component: Home,
   name: "Home"
 },
+{
+  path: '*',
+  component: ErrorPage,
+  name: "ErrorPage"
+
+}
 ];
 
 const router = new VueRouter ({
-  routes
+  routes,
+  mode: 'history'
 })
 
 new Vue({

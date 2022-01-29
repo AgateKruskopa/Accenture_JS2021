@@ -1,4 +1,4 @@
-<template>
+<template >
     <div class="page-container">
       <Header/>
     <div id="router-container">
@@ -17,9 +17,9 @@ export default {
   name: 'App',
   components: {
     Footer,
-    Header
+    Header,
   }
-}
+  }
 </script>
 
 <style>
@@ -28,10 +28,10 @@ export default {
   body {
     margin: 0;
     padding: 0;
-    background-color: #4f0e0e;
+    background-image: url('./assets/background.jpg');
+    background-size: 100%;
     width: 100%;
-    color:#bb8760;
-  font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa', cursive;
   }
 
   .page-container {
@@ -39,10 +39,10 @@ export default {
     align-items: center;
   }
 
-  /* @media (max-width: 768px) {
+  @media (max-width: 768px) {
     .page-container {
       flex-direction: column;
       align-items: center; 
     }
-  } */
+  }
 </style>

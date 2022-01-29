@@ -1,6 +1,6 @@
 <template>
 <div id="newArticle-container">
-    <form v-on:submit.prevent>
+        <form v-on:submit.prevent='savePost'> 
         <h2>Add a new Post</h2>
         <input type="text"  name="name" placeholder="Title" v-model="postName"/>
         <!-- <input type="file"/> -->
@@ -23,11 +23,11 @@
         <option value="2020">2020</option>
         <option value="2019">2019</option>
         </select>
-        <button type="submit">Add post</button>
+        <button>savePost</button>
     </form>
 </div>
 </template>
-
+<!--3 un 26 changes done-->
 <script>
 import axios from "axios";
 
@@ -35,7 +35,7 @@ export default {
     name: 'NewArticle',
     data(){
         return {
-            // id="",
+            // id="",cd 
             postName: "",
             postContent: "",
             postMonth: "",
@@ -45,17 +45,17 @@ export default {
     methods: {
         async savePost(){
             try {
-                await axios.post("http://localhost:3001/server", {
+                await axios.post("http://localhost:3001/posts/create", {
                     name: this.postName,
                     content: this.postContent,
                     month: this.postMonth,
                     year: this.postYear,
-                });
-                this.postName = "";
-                this.postContent = "";
-                this.postMonth = "";
-                this.postYear = "";
-                this.$app.push("/");
+                }),
+                this.postName= "";
+                this.postContent= "";
+                this.postMonth= "";
+                this.postYear= "";
+                // this.$app.push("/");
             } catch (error) {
                 console.log(error);
             }
@@ -69,7 +69,7 @@ export default {
 
 form{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     max-width: 60rem;
     height: auto;
@@ -80,8 +80,7 @@ form{
 }
 
 #newArticle-container{
-    background-color: #bb8760;
-    color: #4f0e0e;
+    color: white;
 }
 
 select{
@@ -92,11 +91,14 @@ select{
     width: 20rem;
     height: 10rem;
     margin: 20px;
-
 }
 @media (max-width: 768px) {
    form {
        padding: 0;
+   }
+   #postBox{
+       width: 15rem;
+       margin: 0;
    }
   }
 </style>

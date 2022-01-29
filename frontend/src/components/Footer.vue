@@ -2,7 +2,6 @@
     <div id="footer-container">
     <h3>Created by Agnija and Agate</h3>
     <p>Accenture Javascript (Kurzeme) Bootcamp, 2021</p>
-    <p>France, Latvia</p>
     </div>
 </template>
 
@@ -15,8 +14,8 @@ export default {
 
 <style>
 #footer-container{
-    background-color: #bb8760;
-    color: #4f0e0e;
+    background-color: #FFF76A;
+    color: black;
     display: flex;
     font-size: 8pt;
     line-height: 10pt;

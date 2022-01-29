@@ -1,31 +1,78 @@
 <template>
     <div id="registration-container">
-          <form>
-        <h2>Registration</h2>
-        <p>If You want to add new useful posts please fill registration form</p>
-        <input type="text" placeholder="Name"/>
-        <input class="password" type="password" placeholder="Password"/>
+          <form v-on:submit.prevent='saveUser'>
+        <h1>{{pageTitle}}</h1>
+        <h3>{{pageMessage}}</h3>
+        <input type="text" name="name" placeholder="userName" v-model="username"/>
+        <input class="password" type="password" placeholder="password" v-model="password"/>
         <button>Register</button>
     </form>
     </div>
 </template>
     
 <script>
+import axios from "axios";
+
 export default {
-    name: 'Registration'
-}
+    name: 'Registration',
+    data(){
+        return {
+            pageTitle: "Registration",
+            pageMessage: "If You want to add new useful posts please fill registration form",
+            username: "",
+            password: "",
+            successMessage: "",
+        };
+    },
+    methods: {
+        async saveUser(){
+            try {
+                await axios.post("http://localhost:3001/user/create", {
+                    username: this.username,
+                    password: this.password,
+                                  }),
+                this.username= "";
+                this.password= "";
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    },
+};
 </script>
 
 <style>
     #registration-container{
-        background-color: #ffdada;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+    padding: 2rem 0;
 }
 
+h3{
+    text-align: center;
+}
+
+.password{
+    margin: 20px;
+}
+
+button{
+    font-family: 'Comfortaa', cursive;
+}
+
+input{
+    margin: 15px;
+}
 
 @media (max-width: 768px) {
     p {
-        width: 350px;
-    text-align: center;
+        width: 250px;
+        text-align: center;
     }
   }
 </style>
